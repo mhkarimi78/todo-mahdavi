@@ -41,7 +41,7 @@ function Header() {
       </div>
       {/* center  */}
       <h1 className=" font-monos text-xl md:text-3xl lg:text-5xl">
-        YOUR TODO LIST
+        {userInfo.name.toUpperCase()}'S TODO LIST
       </h1>
       {/* right */}
       <div>
