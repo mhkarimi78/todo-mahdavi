@@ -7,6 +7,7 @@ export default function BasicTextFields({
   value,
   setValue,
   width = "25ch",
+  placeholder = "",
 }) {
   return (
     <Box
@@ -19,6 +20,7 @@ export default function BasicTextFields({
     >
       <TextField
         id="outlined-basic"
+        placeholder={placeholder}
         value={value}
         label={label}
         variant="outlined"
