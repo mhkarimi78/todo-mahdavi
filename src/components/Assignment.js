@@ -3,7 +3,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 function Assignment() {
   return (
-    <div className=" bg-orange-300">
+    <div className=" bg-orange-300 border-2 border-red-300">
       <div className="flex justify-between">
         <h1>Assignment</h1>
         <AddIcon />
