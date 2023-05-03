@@ -6,12 +6,17 @@ import Task from "./Task";
 
 function DailyTask() {
   const [task, setTask] = useState("");
+  const [description, setDescription] = useState("");
   const [wantsToAdd, setWantsToAdd] = useState(false);
   const [toDos, setToDos] = useState([]);
 
   const handleSubmit = () => {
-    setToDos([...toDos, { task: task, checked: false, edited: false }]);
+    setToDos([
+      ...toDos,
+      { task: task, description: description, checked: false, edited: false },
+    ]);
     setTask("");
+    setDescription("");
   };
 
   const handleChange = (index) => {
@@ -43,37 +48,47 @@ function DailyTask() {
   }, [toDos]);
 
   return (
-    <div className="bg-orange-400 p-2">
-      <div>
-        <div className="flex justify-between">
-          <h1>DailyTask</h1>
-          <AddIcon onClick={() => setWantsToAdd(true)} />
+    <div className="">
+      <div className="bg-orange-400 p-2">
+        <div>
+          <div className="flex justify-between">
+            <h1>DailyTask</h1>
+            <AddIcon onClick={() => setWantsToAdd(true)} />
+          </div>
         </div>
+        {wantsToAdd && (
+          <div className="flex justify-center items-center">
+            <BasicTextFields
+              label="Task"
+              value={task}
+              setValue={setTask}
+              width={"10inch"}
+              focused={true}
+            />
+            <BasicTextFields
+              label="Description"
+              value={description}
+              setValue={setDescription}
+              width={"20inch"}
+            />
+            <BasicButtons label="add task" onClick={handleSubmit} />
+          </div>
+        )}
+        {toDos.map((todo, index) => {
+          return (
+            <Task
+              task={todo.task}
+              description={todo.description}
+              checked={todo.checked}
+              edited={todo.edited}
+              handleDelete={() => handleDelete(index)}
+              handleChange={(event) => handleChange(event, index)}
+              handleEdit={() => handleEdit(index)}
+              submitEdit={(editedTask) => submitEdit(index, editedTask)}
+            />
+          );
+        })}
       </div>
-      {wantsToAdd && (
-        <div className="flex justify-center items-center">
-          <BasicTextFields
-            label="Task"
-            value={task}
-            setValue={setTask}
-            width={"10inch"}
-          />
-          <BasicButtons label="add task" onClick={handleSubmit} />
-        </div>
-      )}
-      {toDos.map((todo, index) => {
-        return (
-          <Task
-            task={todo.task}
-            checked={todo.checked}
-            edited={todo.edited}
-            handleDelete={() => handleDelete(index)}
-            handleChange={(event) => handleChange(event, index)}
-            handleEdit={() => handleEdit(index)}
-            submitEdit={(editedTask) => submitEdit(index, editedTask)}
-          />
-        );
-      })}
     </div>
   );
 }

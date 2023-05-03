@@ -8,6 +8,7 @@ export default function BasicTextFields({
   setValue,
   width = "25ch",
   placeholder = "",
+  focused = false,
 }) {
   return (
     <Box
@@ -24,6 +25,7 @@ export default function BasicTextFields({
         value={value}
         label={label}
         variant="outlined"
+        autoFocus={focused}
         onChange={(e) => setValue(e.target.value)}
       />
     </Box>

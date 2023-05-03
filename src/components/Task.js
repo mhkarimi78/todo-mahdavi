@@ -10,6 +10,7 @@ function Task({
   task,
   checked,
   edited,
+  description,
   handleDelete,
   handleChange,
   handleEdit,
@@ -42,15 +43,27 @@ function Task({
           </div>
         </div>
       ) : (
-        <p
-          style={
-            {
-              // textDecoration: todo.checked && "line-through",
+        <div>
+          <p
+          className=" text-3xl"
+            style={
+              {
+                // textDecoration: todo.checked && "line-through",
+              }
             }
-          }
-        >
-          {task}
-        </p>
+          >
+            {task}
+          </p>
+          <p
+          className=" text-xs"
+            style={{
+              opacity: 0.5,
+            }}
+            
+          >
+            {description}
+          </p>
+        </div>
       )}
       <div className="flex items-center">
         <div className="mr-2" onClick={handleEdit}>
