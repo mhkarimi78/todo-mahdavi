@@ -19,7 +19,7 @@ function DailyTask() {
     setDescription("");
   };
 
-  const handleChange = (index) => {
+  const handleChange = (event, index) => {
     const newTodos = [...toDos];
     const [removed] = newTodos.splice(index, 1);
     removed.checked = !removed.checked;
